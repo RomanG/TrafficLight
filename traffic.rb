@@ -12,6 +12,7 @@ module TL
   Go = "#99FF66"
   Wait = "#FFFF66"
   Stop = "#FF3300"
+  Default = "#999999" 
 end
 
 class Bulb < Shoes::Shape
@@ -39,26 +40,26 @@ class Bulb < Shoes::Shape
   end
 end
 
-  class DBulb
-    def bulb_colour
-    "#999999" 
+class DBulb
+  def bulb_colour
+    TL::Default
   end
 end
 
-  class GoBulb < Bulb
-    def bulb_colour
+class GoBulb
+  def bulb_colour
     TL::Go
   end
 end
 
-  class WaitBulb < Bulb
-    def bulb_colour
+class WaitBulb
+  def bulb_colour
     TL::Wait
   end
 end
 
-  class StopBulb < Bulb
-    def bulb_colour
+class StopBulb
+  def bulb_colour
     TL::Stop
   end
 end
@@ -67,12 +68,33 @@ Shoes.app :title => "Light the Way", :width => 150, :height => 250, :resizable =
   background "#000033", :curve => 10, :margin => 25  
   stroke black    
   
+  
   @traffic_light = TrafficLight.new
-  @top = StopBulb.new self, 50, 40, true     
+  @top = StopBulb.new self, 50, 40, true  
+
+  unless click do   
   @middle = WaitBulb.new self, 50, 100, true
   @bottom = GoBulb.new self, 50, 160, true
-  
+  end
+
   click do
+
+    def self.switched_on(switched_on) 
+      case switched_on 
+      when @top
+        TrafficLight.new
+        @top = StopBulb.new self, 50, 40, true
+      when @middle
+        TrafficLight.new
+        @middle = WaitBulb.new self, 50, 100, true
+      when @bottom
+       TrafficLight.new
+       @bottom = GoBulb.new self, 50, 160, true
+     else
+      TL::Default
+    end
+  end
+end
 
 end
 end
