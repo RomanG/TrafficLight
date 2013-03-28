@@ -9,6 +9,12 @@ class TrafficLight
   end
 end
 
+module TL
+  Go = "#00FF30"
+  Wait = "#FFFC00"
+  Stop = "FF0000"
+end
+
 class Bulb < Shoes::Shape
   attr_accessor :stack
   attr_accessor :left
@@ -33,6 +39,7 @@ class Bulb < Shoes::Shape
     end
   end
 end
+
   class Bulb
     def bulb_colour
     "#999999" 
@@ -41,19 +48,19 @@ end
 
   class GoBulb < Bulb
     def bulb_colour
-    "#00FF30"
+    TL::Go
   end
 end
 
   class WaitBulb < Bulb
     def bulb_colour
-    "#FFFC00"
+    TL::Wait
   end
 end
 
   class StopBulb < Bulb
     def bulb_colour
-    "#FF0000"
+    TL::Stop
   end
 end
 
