@@ -9,9 +9,9 @@ class TrafficLight
 end
 
 module TL
-  Go = "#00FF30"
-  Wait = "#FFFC00"
-  Stop = "FF0000"
+  Go = "#99FF66"
+  Wait = "#FFFF66"
+  Stop = "#FF3300"
 end
 
 class Bulb < Shoes::Shape
@@ -39,7 +39,7 @@ class Bulb < Shoes::Shape
   end
 end
 
-  class Bulb
+  class DBulb
     def bulb_colour
     "#999999" 
   end
@@ -63,8 +63,8 @@ end
   end
 end
 
-Shoes.app :title => "My Amazing Traffic Light", :width => 150, :height => 250 do
-  background "000", :curve => 10, :margin => 25  
+Shoes.app :title => "Light the Way", :width => 150, :height => 250, :resizable => false do
+  background "#000033", :curve => 10, :margin => 25  
   stroke black    
   
   @traffic_light = TrafficLight.new
@@ -73,5 +73,6 @@ Shoes.app :title => "My Amazing Traffic Light", :width => 150, :height => 250 do
   @bottom = GoBulb.new self, 50, 160, true
   
   click do
+
 end
 end
