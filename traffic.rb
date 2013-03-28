@@ -3,7 +3,6 @@ class TrafficLight
 
   def each
     yield [true, false, false]
-    yield [true, true, false]
     yield [false, false, true]
     yield [false, true, false]
   end
